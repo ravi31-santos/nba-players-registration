@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Jogadores da NBA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f6fc;
+            margin: 20px;
+        }
+        h1 {
+            color: #1d428a;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #c8102e;
+            color: white;
+        }
+        a {
+            text-decoration: none;
+            color: #1d428a;
+            font-weight: bold;
+        }
+        .btn {
+            padding: 5px 10px;
+            border-radius: 4px;
+            background: #1d428a;
+            color: white;
+        }
+        .btn-delete {
+            background: #c8102e;
+        }
+    </style>
+</head>
+<body>
+<h1>Lista de Jogadores</h1>
+
+<a class="btn" th:href="@{/player/new}">➕ Novo Jogador</a>
+<br><br>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Nacionalidade</th>
+        <th>Idade</th>
+        <th>Altura</th>
+        <th>Peso</th>
+        <th>Time</th>
+        <th>Camisa</th>
+        <th>Ações</th>
+    </tr>
+    <tr th:each="p : ${players}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.nome_jogador}"></td>
+        <td th:text="${p.nacionalidade_jogador}"></td>
+        <td th:text="${p.idade_jogador}"></td>
+        <td th:text="${p.altura_jogador}"></td>
+        <td th:text="${p.peso_jogador}"></td>
+        <td th:text="${p.time_jogador}"></td>
+        <td th:text="${p.num_camisa}"></td>
+        <td>
+            <a class="btn" th:href="@{/player/edit/{id}(id=${p.id})}">✏️ Editar</a>
+            <a class="btn btn-delete" th:href="@{/player/delete/{id}(id=${p.id})}">🗑️ Excluir</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
